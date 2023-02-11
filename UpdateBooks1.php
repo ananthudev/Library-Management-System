@@ -7,8 +7,35 @@
     <form action="updatebookdbcon.php" method="post">
     <table border="2" align="center" cellpadding="5" cellspacing="5">
         <tr>
-        <td> Enter ISBN :</td>
-        <td> <input type="text" name="isbn" size="48"> </td>
+        <td> Select ISBN :</td>
+        <td> 
+            <select name="isbn">
+                <?php
+                // Connect to the database
+                $servername = "localhost";
+                $username = "username";
+                $password = "password";
+                $dbname = "database_name";
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                // Fetch ISBN values from the database
+                $sql = "SELECT ISBN FROM books";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    // Generate the options for the drop-down menu
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo "<option value='" . $row["ISBN"] . "'>" . $row["ISBN"] . "</option>";
+                    }
+                } else {
+                    echo "<option value=''>No ISBN values found</option>";
+                }
+                mysqli_close($conn);
+                ?>
+            </select> 
+        </td>
         </tr>
         <tr>
         <td> Enter Title :</td>
@@ -39,7 +66,7 @@
 <br>
 <a href="DisplayBooks.php"> To Display Book Information,Click here </a>
 <br>
-<a href="EnterBooks.php"> To Enter Book information,Click here </a>
+<a href="EnterBooks.php"> To Enter Book information,,Click here </a>
 
 </body>
 </html>

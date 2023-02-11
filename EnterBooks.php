@@ -35,7 +35,7 @@
             </tr>
         </table>
     </form>
-    <a href="UpdateBooks1.php"> To Update Book Information,Click here </a>
+    <a href="UpdateBooks.php"> To Update Book Information,Click here </a>
     <br>
     <a href="SearchBooks.php"> To Search Book Information,Click here </a>
     <br>

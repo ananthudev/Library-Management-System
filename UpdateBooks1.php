@@ -16,7 +16,6 @@
             $author = $_POST["author"];
             $edition = $_POST["edition"];
             $publication = $_POST["publication"];
-    
             $query = "SELECT * FROM book_info WHERE isbn = '$isbn'";
             $result = mysqli_query($db, $query);
             if (mysqli_num_rows($result) > 0) {

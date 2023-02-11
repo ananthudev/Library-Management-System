@@ -1,0 +1,8 @@
+CREATE TABLE book_info (
+isbn INT (30) PRIMARY KEY,
+title VARCHAR(100) NOT NULL,
+author VARCHAR(100) NOT NULL,
+edition VARCHAR(30) NOT NULL,
+publication VARCHAR(30) NOT NULL
+);
+/// SQL query for creating database, database name - books, table name- books_infohttps://github.com/ananthudev/Simple-Library-Management-System.git

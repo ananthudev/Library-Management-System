@@ -1,77 +1,73 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Library Management System</title>
-</head>
 <body bgcolor="87ceeb">
-    <center>
-        <h2>Library Management System</h2>
-    </center>
-    <br>
-    <!--Once the form is submitted, all the form data is forwarded to UpdateBooks.php -->
-    <form action="UpdateBooks2.php" method="post">
-        <table border="2" align="center" cellpadding="5" cellspacing="5">
-            <tr>
-            <td>Enter ISBN :</td>
-            <td>
-                <select name="isbn">
-                    <?php
-                    // Connect to the database
-                    $servername = "localhost";
-                    $username = "username";
-                    $password = "password";
-                    $dbname = "database_name";
-
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
+    <center><h2>Update Book Information</h2></center>
+    <!-- <h2>Update Book Information</h2> -->
+    <form action="updatebookdbcon.php" method="post">
+    <table border="2" align="center" cellpadding="5" cellspacing="5">
+        <tr>
+        <td> Enter ISBN :</td>
+        <td> <input type="text" name="isbn" size="48"> </td>
+        <td> Select ISBN :</td>
+        <td> 
+            <select name="isbn">
+                <?php
+                // Connect to the database
+                $servername = "localhost";
+                $username = "username";
+                $password = "password";
+                $dbname = "database_name";
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                // Fetch ISBN values from the database
+                $sql = "SELECT ISBN FROM books";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    // Generate the options for the drop-down menu
+                    while($row = mysqli_fetch_assoc($result)) {
+                        echo "<option value='" . $row["ISBN"] . "'>" . $row["ISBN"] . "</option>";
                     }
+                } else {
+                    echo "<option value=''>No ISBN values found</option>";
+                }
+                mysqli_close($conn);
+                ?>
+            </select> 
+        </td>
+        </tr>
+        <tr>
+        <td> Enter Title :</td>
+        <td> <input type="text" name="title" size="48"> </td>
+        </tr>
+        <tr>
+        <td> Enter Author :</td>
+        <td> <input type="text" name="author" size="48"> </td>
+        </tr>
+        <tr>
+        <td> Enter Edition :</td>
+        <td> <input type="text" name="edition" size="48"> </td>
+        </tr>
+        <tr>
+        <td> Enter Publication: </td>
+        <td> <input type="text" name="publication" size="48"> </td>
+        </tr>
+        <tr>
+        <td></td>
+        <td>
+        <input type="submit" value="Update">
+        <input type="reset" value="Reset">
+        </td>
+        </tr>
+    </table>
+</form>
+<a href="SearchBooks.php"> To Search Book Information,Click here </a>
+<br>
+<a href="DisplayBooks.php"> To Display Book Information,Click here </a>
+<br>
+<a href="EnterBooks.php"> To Enter Book information,Click here </a>
 
-                    // Fetch the data from the database
-                    $sql = "SELECT isbn FROM books";
-                    $result = $conn->query($sql);
-
-                    // Populate the dropdown menu with the data
-                    if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['isbn'] . "'>" . $row['isbn'] . "</option>";
-                        }
-                    } else {
-                        echo "<option value=''>No ISBNs found</option>";
-                    }
-                    $conn->close();
-                    ?>
-                </select>
-            </td>
-            </tr>
-            <tr>
-            <td>Enter Title :</td>
-            <td><input type="text" name="title" size="48"></td>
-            </tr>
-            <tr>
-            <td>Enter Author :</td>
-            <td><input type="text" name="author" size="48"></td>
-            </tr>
-            <tr>
-            <td>Enter Edition :</td>
-            <td><input type="text" name="edition" size="48"></td>
-            </tr>
-            <tr>
-            <td>Enter Publication :</td>
-            <td><input type="text" name="publication" size="48"></td>
-            </tr>
-            <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
-            </td>
-            </tr>
-        </table>
-    </form>
 </body>
 </html>

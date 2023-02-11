@@ -26,6 +26,8 @@
                 $result = mysqli_query($db, $query);
                 echo "<script type='text/javascript'>alert('Book information is inserted successfully'); window.location.href='EnterBooks.php';</script>";
             }
+        } else {
+            echo "<script type='text/javascript'>alert('Error: Missing information to insert book.'); window.location.href='EnterBooks.php';</script>";
         }
     ?>
 </body>

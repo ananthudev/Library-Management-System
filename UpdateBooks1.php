@@ -10,12 +10,12 @@
     <br>
     <?php
         include("DBConnection.php");
-        if (isset($_POST["isbn"]) && isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["edition"]) && isset($_POST["publication"])) {
-            $isbn = $_POST["isbn"];
-            $title = $_POST["title"];
-            $author = $_POST["author"];
-            $edition = $_POST["edition"];
-            $publication = $_POST["publication"];
+        $isbn = $_POST["isbn"] ?? '';
+        $title = $_POST["title"] ?? '';
+        $author = $_POST["author"] ?? '';
+        $edition = $_POST["edition"] ?? '';
+        $publication = $_POST["publication"] ?? '';
+        if (!empty($isbn) && !empty($title) && !empty($author) && !empty($edition) && !empty($publication)) {
             $query = "SELECT * FROM book_info WHERE isbn = '$isbn'";
             $result = mysqli_query($db, $query);
             if (mysqli_num_rows($result) > 0) {
@@ -25,7 +25,6 @@
                 $result = mysqli_query($db, $query);
                 echo "<script type='text/javascript'>alert('Book information is inserted successfully'); window.location.href='EnterBooks.php';</script>";
             }
-    
         } else {
             echo "<script type='text/javascript'>alert('Error: Missing information to insert book.'); window.location.href='EnterBooks.php';</script>";
         }

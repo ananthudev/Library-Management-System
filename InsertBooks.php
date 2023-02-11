@@ -5,17 +5,25 @@
     <br>
  
     <?php
-    include("DBConnection.php");
+include("DBConnection.php");
 
-    if (isset($_POST["isbn"]) && isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["edition"]) && isset($_POST["publication"])) {
-        $isbn=$_POST["isbn"];
-        $title=$_POST["title"];
-        $author=$_POST["author"];
-        $edition=$_POST["edition"];
-        $publication=$_POST["publication"];
+if (isset($_POST["isbn"]) && isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["edition"]) && isset($_POST["publication"])) {
+    $isbn=$_POST["isbn"];
+    $title=$_POST["title"];
+    $author=$_POST["author"];
+    $edition=$_POST["edition"];
+    $publication=$_POST["publication"];
 
-        $query = "insert into book_info(isbn,title,author,edition,publication) values('$isbn','$title','$author','$edition','$publication')"; //Insert query to add book details into the book_info table
-        $result = mysqli_query($db,$query);
+    $query = "SELECT * FROM book_info WHERE isbn = '$isbn'";
+$result = mysqli_query($db, $query);
+if (mysqli_num_rows($result) > 0) {
+    echo "<script type='text/javascript'>alert('Error: ISBN already exists. Book information could not be inserted.');</script>";
+} else {
+    $query = "insert into book_info(isbn,title,author,edition,publication) values('$isbn','$title','$author','$edition','$publication')"; //Insert query to add book details into the book_info table
+    $result = mysqli_query($db, $query);
+    echo "<script type='text/javascript'>alert('Book information is inserted successfully');</script>";
+}
+
 ?>
 <h3> Book information is inserted successfully </h3>
 

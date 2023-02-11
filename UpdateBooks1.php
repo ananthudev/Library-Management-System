@@ -1,73 +1,36 @@
-<?php
-include("DBConnection.php");
-
-$ISBN = isset($_REQUEST["ISBN"]) ? $_REQUEST["ISBN"] : '';
-$Title = isset($_REQUEST["Title"]) ? $_REQUEST["Title"] : '';
-$Author = isset($_REQUEST["Author"]) ? $_REQUEST["Author"] : '';
-$Edition = isset($_REQUEST["Edition"]) ? $_REQUEST["Edition"] : '';
-$Publication = isset($_REQUEST["Publication"]) ? $_REQUEST["Publication"] : '';
-
-if(isset($_REQUEST["update"]))
-{
-    $query = "update book_info set Title='$Title',Author='$Author',Edition='$Edition',Publication='$Publication' where ISBN='$ISBN'";
-    $result = mysqli_query($db,$query);
-    if($result)
-    {
-        echo "<center>Record updated successfully</center>";
-    }
-    else
-    {
-        echo "<center>Record not updated</center>";
-    }
-}
-
-$query = "select ISBN from book_info";
-$result = mysqli_query($db,$query);
-?>
-
-<form action="#" method="post">
-<table align="center">
-    <tr>
-        <td>Select ISBN</td>
-        <td>
-            <select name="ISBN">
-            <option value="">Select ISBN</option>
-            <?php while($row = mysqli_fetch_assoc($result))
-            {
-                echo "<option value='".$row['ISBN']."'>".$row['ISBN']."</option>";
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Library Management System</title>
+</head>
+<body bgcolor="87ceeb">
+    <center>
+        <h2>Library Management System</h2>
+    </center>
+    <br>
+    <?php
+        include("DBConnection.php");
+        if (isset($_POST["isbn"]) && isset($_POST["title"]) && isset($_POST["author"]) && isset($_POST["edition"]) && isset($_POST["publication"])) {
+            $isbn = $_POST["isbn"];
+            $title = $_POST["title"];
+            $author = $_POST["author"];
+            $edition = $_POST["edition"];
+            $publication = $_POST["publication"];
+    
+            $query = "SELECT * FROM book_info WHERE isbn = '$isbn'";
+            $result = mysqli_query($db, $query);
+            if (mysqli_num_rows($result) > 0) {
+                echo "<script type='text/javascript'>alert('Error: ISBN already exists. Book already exists.'); window.location.href='EnterBooks.php';</script>";
+            } else {
+                $query = "insert into book_info(isbn,title,author,edition,publication) values('$isbn','$title','$author','$edition','$publication')"; //Insert query to add book details into the book_info table
+                $result = mysqli_query($db, $query);
+                echo "<script type='text/javascript'>alert('Book information is inserted successfully'); window.location.href='EnterBooks.php';</script>";
             }
-            ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>Title</td>
-        <td><input type="text" name="Title" value=""></td>
-    </tr>
-    <tr>
-        <td>Author</td>
-        <td><input type="text" name="Author" value=""></td>
-    </tr>
-    <tr>
-        <td>Edition</td>
-        <td><input type="text" name="Edition" value=""></td>
-    </tr>
-    <tr>
-        <td>Publication</td>
-        <td><input type="text" name="Publication" value=""></td>
-    </tr>
-    <tr>
-        <td><input type="submit" name="update" value="Update"></td>
-    </tr>
-</table>
-</form>
-
-<br>
-<a href="SearchBooks.php"> To Search Book Information,Click here </a>
-<br>
-<a href="DisplayBooks.php"> To Display Book Information,Click here </a>
-<br>
-<a href="EnterBooks.php"> To Enter Book information,,Click here </a>
-
+    
+        } else {
+            echo "<script type='text/javascript'>alert('Error: Missing information to insert book.'); window.location.href='EnterBooks.php';</script>";
+        }
+    ?>
 </body>
 </html>
+    

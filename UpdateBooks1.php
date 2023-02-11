@@ -2,7 +2,6 @@
 <html>
 <body bgcolor="87ceeb">
     <center><h2>Update Book Information</h2></center>
-    <!-- <h2>Update Book Information</h2> -->
 
     <form action="updatebookdbcon.php" method="post">
     <table border="2" align="center" cellpadding="5" cellspacing="5">

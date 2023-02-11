@@ -12,17 +12,38 @@
     <form action="UpdateBooks2.php" method="post">
         <table border="2" align="center" cellpadding="5" cellspacing="5">
             <tr>
-            <td>Select ISBN :</td>
+            <td>Enter ISBN :</td>
             <td>
                 <select name="isbn">
                     <?php
-                        // Connect to the database to retrieve the existing ISBNs
-                        $conn = mysqli_connect("host", "username", "password", "database_name");
-                        $sql = "SELECT ISBN FROM books";
-                        $result = mysqli_query($conn, $sql);
-                        while($row = mysqli_fetch_array($result)) {
-                            echo "<option value='".$row['ISBN']."'>".$row['ISBN']."</option>";
+                    // Connect to the database
+                    $servername = "localhost";
+                    $username = "username";
+                    $password = "password";
+                    $dbname = "database_name";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    // Fetch the data from the database
+                    $sql = "SELECT isbn FROM books";
+                    $result = $conn->query($sql);
+
+                    // Populate the dropdown menu with the data
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row['isbn'] . "'>" . $row['isbn'] . "</option>";
                         }
+                    } else {
+                        echo "<option value=''>No ISBNs found</option>";
+                    }
+                    $conn->close();
                     ?>
                 </select>
             </td>

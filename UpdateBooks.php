@@ -13,7 +13,30 @@
         <table border="2" align="center" cellpadding="5" cellspacing="5">
             <tr>
             <td>Enter ISBN :</td>
-            <td><input type="text" name="isbn" size="48"></td>
+            <td>
+                <select name="isbn">
+                    <option value="">--Select ISBN--</option>
+                    <?php
+                        //connect to database
+                        $conn = mysqli_connect("localhost", "root", "", "books");
+                        //check the connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        //select all ISBNs from the books table
+                        $sql = "SELECT ISBN FROM books";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            //output data for each row
+                            while($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='".$row["ISBN"]."'>".$row["ISBN"]."</option>";
+                            }
+                        }
+                        //close the database connection
+                        mysqli_close($conn);
+                    ?>
+                </select>
+            </td>
             </tr>
             <tr>
             <td>Enter Title :</td>

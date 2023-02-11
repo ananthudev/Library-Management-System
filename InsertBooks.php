@@ -15,32 +15,19 @@ if (isset($_POST["isbn"]) && isset($_POST["title"]) && isset($_POST["author"]) &
     $publication=$_POST["publication"];
 
     $query = "SELECT * FROM book_info WHERE isbn = '$isbn'";
-$result = mysqli_query($db, $query);
-if (mysqli_num_rows($result) > 0) {
-    echo "<script type='text/javascript'>alert('Error: ISBN already exists. Book information could not be inserted.');</script>";
-} else {
-    $query = "insert into book_info(isbn,title,author,edition,publication) values('$isbn','$title','$author','$edition','$publication')"; //Insert query to add book details into the book_info table
     $result = mysqli_query($db, $query);
-    echo "<script type='text/javascript'>alert('Book information is inserted successfully');</script>";
-}
-
-?>
-<h3> Book information is inserted successfully </h3>
-
-<?php
+    if (mysqli_num_rows($result) > 0) {
+        echo "<script type='text/javascript'>alert('Error: ISBN already exists. Book already exists.'); window.location.href='EnterBooks.php';</script>";
     } else {
-?>
-<h3> Error: Missing information to insert book. </h3>
-<?php
+        $query = "insert into book_info(isbn,title,author,edition,publication) values('$isbn','$title','$author','$edition','$publication')"; //Insert query to add book details into the book_info table
+        $result = mysqli_query($db, $query);
+        echo "<script type='text/javascript'>alert('Book information is inserted successfully'); window.location.href='EnterBooks.php';</script>";
     }
+
+} else {
+    echo "<script type='text/javascript'>alert('Error: Missing information to insert book.'); window.location.href='EnterBooks.php';</script>";
+}
 ?>
-
-<a href="SearchBooks.php"> To Search for the Book information,Click here </a>
-<br>
-<a href="EnterBooks.php"> To Enter Book information,Click here </a>
-<br>
-<a href="DisplayBooks.php"> To Display Book information,Click here </a>
-
  
 </body>
 </html>

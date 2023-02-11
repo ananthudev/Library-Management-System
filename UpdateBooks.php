@@ -12,8 +12,20 @@
     <form action="UpdateBooks2.php" method="post">
         <table border="2" align="center" cellpadding="5" cellspacing="5">
             <tr>
-            <td>Enter ISBN :</td>
-            <td><input type="text" name="isbn" size="48"></td>
+            <td>Select ISBN :</td>
+            <td>
+                <select name="isbn">
+                    <?php
+                        // Connect to the database to retrieve the existing ISBNs
+                        $conn = mysqli_connect("host", "username", "password", "database_name");
+                        $sql = "SELECT ISBN FROM books";
+                        $result = mysqli_query($conn, $sql);
+                        while($row = mysqli_fetch_array($result)) {
+                            echo "<option value='".$row['ISBN']."'>".$row['ISBN']."</option>";
+                        }
+                    ?>
+                </select>
+            </td>
             </tr>
             <tr>
             <td>Enter Title :</td>

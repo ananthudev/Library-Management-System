@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Update Book Information</title>
@@ -32,4 +32,4 @@
     <br>
     <a href="DisplayBooks.php"> To Display Book information,Click here </a>
 </body>
-</html>
+</html> -->

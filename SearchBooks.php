@@ -12,6 +12,11 @@
         <br>
         </form>
         <a href="EnterBooks.php"> To Enter Book information Click here </a>
+        <br>
+        <a href="DisplayBooks.php"> To Display Book Information,Click here </a>
+        <br>
+        <a href="SearchBooks.php"> To Search Book Information,Click here </a>
+        
 
     </body>
 </html>

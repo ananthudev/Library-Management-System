@@ -29,13 +29,16 @@
             <tr>
             <td></td>
             <td>
-            <input type="submit" value="submit">
+            <input type="submit" value="Submit">
             <input type="reset" value="Reset">
             </td>
             </tr>
         </table>
     </form>
-    <a href="SearchBooks.php"> To Search Book information,Click here </a> 
-    
+    <a href="UpdateBooks1.php"> To Update Book Information,Click here </a>
+    <br>
+    <a href="SearchBooks.php"> To Search Book Information,Click here </a>
+    <br>
+    <a href="DisplayBooks"> To Display Book information,Click here </a>
 </body>
 </html>

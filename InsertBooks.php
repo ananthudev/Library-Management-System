@@ -18,7 +18,11 @@
     ?>
     <h3> Book information is inserted successfully </h3>
  
-    <a href="SearchBooks.php"> To search for the Book information Click here </a>
+    <a href="SearchBooks.php"> To Search for the Book information,Click here </a>
+    <br>
+    <a href="EnterBooks.php"> To Enter Book information,Click here </a>
+    <br>
+    <a href="DisplayBooks.php"> To Display Book information,Click here </a>
  
 </body>
 </html>

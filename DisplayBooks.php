@@ -52,6 +52,8 @@
     <a href="EnterBooks.php"> To Enter Book information,Click here </a>
     <br>
     <a href="DisplayBooks.php"> To Display Book information,Click here </a>
+    <br>
+    <a href="UpdateBooks.php"> To Update Book Information,Click here </a>
 
     </body>
 </html>

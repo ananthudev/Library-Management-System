@@ -41,7 +41,7 @@ if(mysqli_num_rows($result)>0)
         <td><?php echo $row["Edition"];?> </td>
         <td><?php echo $row["Publication"];?> </td>
         <td>
-            <form action="delete_book.php" method="post">
+            <form action="DeleteBooks.php" method="post">
                 <input type="hidden" name="ISBN" value="<?php echo $row['ISBN']; ?>">
                 <input type="submit" name="delete" value="Delete">
             </form>

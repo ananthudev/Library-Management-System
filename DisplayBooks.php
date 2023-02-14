@@ -63,3 +63,5 @@ if(mysqli_num_rows($result)>0)
 <a href="UpdateBooks.php"> To Update Book Information,Click here </a>
 
 </body>
+
+</html>

@@ -54,13 +54,13 @@ if(mysqli_num_rows($result)>0)
     echo "<center>No books found in the library by the name - $search </center>" ;
     ?>   
 </table>
-<a href="SearchBooks.php"> To Search for the Book Information,Click here </a>
+<a href="SearchBooks.php"> To Search for the Books Information,Click here </a>
 <br>
-<a href="EnterBooks.php"> To Enter Book information,Click here </a>
+<a href="EnterBooks.php"> To Enter Books information,Click here </a>
 <br>
-<a href="DisplayBooks.php"> To Display Book information,Click here </a>
+<a href="DisplayBooks.php"> To Display or Delete Books information,Click here </a>
 <br>
-<a href="UpdateBooks.php"> To Update Book Information,Click here </a>
+<a href="UpdateBooks.php"> To Update Books Information,Click here </a>
 
 </body>
 

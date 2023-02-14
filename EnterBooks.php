@@ -39,6 +39,6 @@
     <br>
     <a href="SearchBooks.php"> To Search Books Information,Click here </a>
     <br>
-    <a href="DisplayBooks.php"> To Display or DeleteBooks information,Click here </a>
+    <a href="DisplayBooks.php"> To Display or Delete Books information,Click here </a>
 </body>
 </html>

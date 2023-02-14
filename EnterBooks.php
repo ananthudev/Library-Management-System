@@ -35,10 +35,10 @@
             </tr>
         </table>
     </form>
-    <a href="UpdateBooks.php"> To Update Book Information,Click here </a>
+    <a href="UpdateBooks.php"> To Update or Delete Books Information,Click here </a>
     <br>
-    <a href="SearchBooks.php"> To Search Book Information,Click here </a>
+    <a href="SearchBooks.php"> To Search Books Information,Click here </a>
     <br>
-    <a href="DisplayBooks.php"> To Display Book information,Click here </a>
+    <a href="DisplayBooks.php"> To Display Books information,Click here </a>
 </body>
 </html>
